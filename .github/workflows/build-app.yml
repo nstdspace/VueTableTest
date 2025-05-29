@@ -22,7 +22,7 @@ jobs:
 
       - name: Build Vue App
         working-directory: easy-crm-frontend
-        run: npm run build
+        run: npm install && npm run build
 
       - name: Upload Build Artifact
         uses: actions/upload-pages-artifact@v3
