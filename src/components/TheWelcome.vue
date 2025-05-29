@@ -101,7 +101,7 @@ const updateFilter = (event: Event) => {
   setPLZFilter(/^[456].*/g)
 }
 
-const mailTo = computed(() => `mailto:${mails.value}`)
+const mailTo = computed(() => `mailto:mail@bdo-agentur.de?bcc=${mails.value}`)
 
 const openMail = () => window.open(mailTo.value)
 const copyMails = () => navigator.clipboard.writeText(mails.value)
