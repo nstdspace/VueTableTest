@@ -85,15 +85,17 @@ const table = useVueTable({
   },
 })
 
-const mailTo = computed(() => {
-  const to = table
+const mails = computed(() =>
+  table
     .getFilteredRowModel()
     .rows.map((row) => row.getValue('E-Mail-Adresse'))
-    .join(',')
-  return `mailto:${to}`
-})
+    .join(','),
+)
+
+const mailTo = computed(() => `mailto:${mails.value}`)
 
 const openMail = () => window.open(mailTo.value)
+const copyMails = () => navigator.clipboard.writeText(mails.value)
 
 const setPLZFilter = (event: InputEvent) => {
   const value = (event.target as HTMLInputElement).value
@@ -161,8 +163,13 @@ const setPLZFilter = (event: InputEvent) => {
       </table>
     </div>
 
-    <button @click="openMail" class="rounded p-3 border border-slate-500 bg-slate-300">
-      Email an sichtbare Adressen senden
-    </button>
+    <div class="flex gap-5">
+      <button @click="openMail" class="rounded p-3 border border-slate-500 bg-slate-400">
+        Email an sichtbare Adressen senden
+      </button>
+      <button @click="copyMails" class="rounded p-3 border border-slate-500 bg-slate-300">
+        Sichtbare Adressen kopieren
+      </button>
+    </div>
   </div>
 </template>
