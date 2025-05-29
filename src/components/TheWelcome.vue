@@ -47,6 +47,10 @@ const columns = [
   columnHelper.accessor('Ort', { enableColumnFilter: false }),
   columnHelper.accessor('PLZ', {
     enableColumnFilter: true,
+    filterFn: (row, id, filterRegex: RegExp) => {
+      console.log(filterRegex)
+      return filterRegex.test(row.getValue(id)!.toString())
+    },
   }),
   columnHelper.accessor('E-Mail-Adresse', {
     enableColumnFilter: false,
@@ -92,16 +96,18 @@ const mails = computed(() =>
     .join(','),
 )
 
+const updateFilter = (event: Event) => {
+  console.log((event.target as HTMLInputElement).checked)
+  setPLZFilter(/^[456].*/g)
+}
+
 const mailTo = computed(() => `mailto:${mails.value}`)
 
 const openMail = () => window.open(mailTo.value)
 const copyMails = () => navigator.clipboard.writeText(mails.value)
 
-const setPLZFilter = (event: InputEvent) => {
-  const value = (event.target as HTMLInputElement).value
-  console.log(value)
-  table.getColumn('PLZ')?.setFilterValue(value)
-  console.log(table.getFilteredRowModel().rows.map((row) => row.getValue('PLZ')))
+const setPLZFilter = (filter: RegExp) => {
+  table.getColumn('PLZ')?.setFilterValue(filter)
 }
 </script>
 
@@ -139,10 +145,10 @@ const setPLZFilter = (event: InputEvent) => {
                 <template v-if="header.column.getCanFilter()">
                   <input
                     @click="(event) => event.stopPropagation()"
-                    @input="(event) => setPLZFilter(event as InputEvent)"
-                    class="font-normal border rounded"
-                    size="5"
+                    @input="(event) => updateFilter(event)"
+                    type="checkbox"
                   />
+                  Nur 4*,5*,6*
                 </template>
               </div>
             </th>
