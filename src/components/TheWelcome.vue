@@ -58,7 +58,6 @@ const columns = [
 ]
 
 const data = ref<Data[]>([])
-
 const sorting = ref<SortingState>([])
 
 const table = useVueTable({
