@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: easy-crm-backend
+
+  datasource:
+    url: jdbc:postgresql://localhost:5444/postgres
+    username: postgres
+    password: postgres
+
+  flyway:
+    baseline-on-migrate: true
+    user: postgres
+    password: postgres
+
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://auth.maksim-rotmann.dynv6.net/realms/easy-crm

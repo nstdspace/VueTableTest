@@ -1,0 +1,2 @@
+POST {{ baseUrl }}/admin/seed
+Authorization: Bearer {{$auth.token("malinka")}}
