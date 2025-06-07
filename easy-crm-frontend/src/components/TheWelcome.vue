@@ -113,13 +113,6 @@ const setPLZFilter = (filter: RegExp) => {
 <template>
   <div class="flex flex-col gap-7 p-5 h-full">
     <div class="flex gap-5 items-center">
-      <span class="text-bold">Datei auswählen: </span>
-      <input
-        class="border border-gray-500 rounded p-3"
-        id="fileInput"
-        type="file"
-        accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-      />
       <div>({{ table.getRowModel().rows.length }} Einträge)</div>
     </div>
     <div class="min-h-0 overflow-auto grow border border-slate-500">

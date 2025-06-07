@@ -5,13 +5,12 @@ on:
     branches:
       - master
     paths:
-      - 'easy-crm-frontend'
+      - 'easy-crm-frontend/**'
 
 jobs:
 
   build:
     runs-on: ubuntu-latest
-
 
     steps:
       - name: Checkout
