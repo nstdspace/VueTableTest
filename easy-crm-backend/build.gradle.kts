@@ -37,6 +37,7 @@ object Versions {
     const val FLYWAY = "11.9.0"
     const val KONVERT = "4.1.0"
     const val KOTLIN_LOGGING = "7.0.7"
+    const val APACHE_POI = "5.4.1"
 }
 
 dependencies {
@@ -50,6 +51,8 @@ dependencies {
 
     implementation("io.mcarle:konvert-api:${Versions.KONVERT}")
 
+    implementation("org.apache.poi:poi:${Versions.APACHE_POI}")
+    implementation("org.apache.poi:poi-ooxml:${Versions.APACHE_POI}")
     implementation("io.github.oshai:kotlin-logging-jvm:${Versions.KOTLIN_LOGGING}")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")

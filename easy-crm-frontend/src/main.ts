@@ -11,7 +11,7 @@ const app = createApp(App)
 
 app.use(VueKeycloak, {
   config: {
-    url: 'http://localhost:8180',
+    url: 'https://auth.maksim-rotmann.dynv6.net',
     realm: 'easy-crm',
     clientId: 'easy-crm-frontend',
   },
