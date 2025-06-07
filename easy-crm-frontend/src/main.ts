@@ -9,11 +9,13 @@ import router from './router'
 
 const app = createApp(App)
 
+console.log(import.meta.env.VITE_KEYCLOAK_BASE_URL)
+
 app.use(VueKeycloak, {
   config: {
-    url: 'https://auth.maksim-rotmann.dynv6.net',
-    realm: 'easy-crm',
-    clientId: 'easy-crm-frontend',
+    url: import.meta.env.VITE_KEYCLOAK_BASE_URL,
+    realm: import.meta.env.VITE_KEYCLOAK_REALM,
+    clientId: import.meta.env.VITE_KEYCLOAK_CLIENT_ID,
   },
   init: {
     onLoad: 'login-required',
