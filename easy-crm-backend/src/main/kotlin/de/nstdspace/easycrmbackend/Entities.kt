@@ -35,6 +35,8 @@ class ClientEntity {
 
     @Column lateinit var createdAt: Instant
 
+    @Column lateinit var userId: UUID
+
     @ManyToOne(optional = false, cascade = [CascadeType.PERSIST])
     @JoinColumn(name = "address_id", nullable = false)
     lateinit var address: AddressEntity

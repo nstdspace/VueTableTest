@@ -5,6 +5,8 @@ import logger
 import org.apache.poi.ss.usermodel.CellType
 import org.apache.poi.ss.usermodel.Row
 import org.apache.poi.ss.usermodel.WorkbookFactory
+import org.springframework.security.core.annotation.AuthenticationPrincipal
+import org.springframework.security.oauth2.jwt.Jwt
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
@@ -12,10 +14,10 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class AdminController(val clientRepository: ClientRepository) {
     @PostMapping("/admin/seed")
-    fun initData(@RequestBody clientsXlsx: ByteArray) {
+    fun initData(@RequestBody clientsXlsx: ByteArray, @AuthenticationPrincipal jwt: Jwt) {
         WorkbookFactory.create(clientsXlsx.inputStream()).use {
             val sheet = it.getSheetAt(0)
-            val clients = sheet.drop(1).map(::createClient)
+            val clients = sheet.drop(1).map(::createClient).map { it.apply { userId = jwt.userId } }
             clientRepository.saveAll(clients)
             logger.info { "Successfully saved ${clients.size} clients" }
         }
@@ -36,7 +38,7 @@ class AdminController(val clientRepository: ClientRepository) {
                             when (it.cellType) {
                                 CellType.NUMERIC -> it.numericCellValue.toInt().toString()
                                 CellType.STRING -> it.stringCellValue
-                                else -> error("")
+                                else -> error("Unknown cell type")
                             }
                         }
                 }

@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS client
     last_name  TEXT,
     company    TEXT,
     email      TEXT                    NOT NULL,
+    user_id    UUID                    NOT NULL,
     created_at TIMESTAMPTZ             NOT NULL,
     address_id UUID REFERENCES address NOT NULl
 );
