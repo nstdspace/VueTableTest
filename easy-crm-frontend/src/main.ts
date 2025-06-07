@@ -25,4 +25,3 @@ app.use(VueKeycloak, {
 })
 app.use(createPinia())
 app.use(router)
-

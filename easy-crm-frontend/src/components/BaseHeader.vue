@@ -6,8 +6,8 @@ defineProps<{
 }>()
 </script>
 <template>
-  <header class="bg-slate-300 w-full h-16 p-5 gap-10 flex items-center">
-    <h1 class="px-3 py-1 rounded-xl bg-slate-400 text-lg font-bold">Kundenverwaltung</h1>
+  <header class="flex h-16 w-full items-center gap-10 bg-slate-300 p-5">
+    <h1 class="rounded-xl bg-slate-400 px-3 py-1 text-lg font-bold">Kundenverwaltung</h1>
     <span>Angezeigte Einträge: {{ visibleClientCount }}</span>
     <LoggedInUserPanel class="ml-auto" />
   </header>

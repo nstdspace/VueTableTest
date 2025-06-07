@@ -111,22 +111,22 @@ const visibleClientsCount = computed(() => table.getRowModel().rows.length)
 </script>
 
 <template>
-  <div class="flex flex-col h-full">
+  <div class="flex h-full flex-col">
     <BaseHeader :visible-client-count="visibleClientsCount" />
-    <div class="p-5 flex flex-col h-full gap-7">
-      <div class="min-h-0 overflow-auto grow border border-slate-500">
-        <table class="table-fixed w-full">
+    <div class="flex h-full flex-col gap-7 p-5">
+      <div class="min-h-0 grow overflow-auto border border-slate-500">
+        <table class="w-full table-fixed">
           <thead>
             <tr v-for="headerGroup in table.getHeaderGroups()" :key="headerGroup.id">
               <th
-                class="p-2 sticky top-0 bg-gray-300"
+                class="sticky top-0 bg-gray-300 p-2"
                 v-for="header in headerGroup.headers"
                 :key="header.id"
                 :colSpan="header.colSpan"
                 :class="header.column.getCanSort() ? 'cursor-pointer select-none' : ''"
                 @click="header.column.getToggleSortingHandler()?.($event)"
               >
-                <div class="flex gap-3 items-center">
+                <div class="flex items-center gap-3">
                   <FlexRender
                     :render="header.column.columnDef.header"
                     :props="header.getContext()"
@@ -164,10 +164,10 @@ const visibleClientsCount = computed(() => table.getRowModel().rows.length)
       </div>
 
       <div class="flex gap-5">
-        <button @click="openMail" class="rounded p-3 border border-slate-500 bg-slate-400">
+        <button @click="openMail" class="rounded border border-slate-500 bg-slate-400 p-3">
           Email an sichtbare Adressen senden
         </button>
-        <button @click="copyMails" class="rounded p-3 border border-slate-500 bg-slate-300">
+        <button @click="copyMails" class="rounded border border-slate-500 bg-slate-300 p-3">
           Sichtbare Adressen kopieren
         </button>
       </div>
