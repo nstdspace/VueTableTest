@@ -14,11 +14,12 @@ class WebSecurityConfig {
     @Bean
     fun filterChain(http: HttpSecurity): SecurityFilterChain {
         return http
+            .cors {}
             .oauth2ResourceServer { it.jwt {} }
             .authorizeHttpRequests { it.anyRequest().authenticated() }
             .build()
     }
 }
 
-val Jwt.userId
+val Jwt.userId: UUID
     get() = UUID.fromString(claims["sub"].toString())

@@ -8,5 +8,6 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class ClientController(private val clientService: ClientService) {
     @GetMapping("clients")
-    fun getClients(@AuthenticationPrincipal jwt: Jwt): List<ClientDto> = clientService.getClients(jwt.userId)
+    fun getClients(@AuthenticationPrincipal jwt: Jwt): List<ClientDto> =
+        clientService.getClients(jwt.userId)
 }

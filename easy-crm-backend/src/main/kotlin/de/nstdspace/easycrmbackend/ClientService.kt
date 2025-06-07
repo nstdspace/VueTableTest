@@ -1,7 +1,7 @@
 package de.nstdspace.easycrmbackend
 
-import org.springframework.stereotype.Service
 import java.util.UUID
+import org.springframework.stereotype.Service
 
 @Service
 class ClientService(private val clientRepository: ClientRepository) {

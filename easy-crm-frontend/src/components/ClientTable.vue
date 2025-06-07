@@ -11,6 +11,8 @@ import {
 import { computed, ref } from 'vue'
 import BaseHeader from '@/components/BaseHeader.vue'
 
+fetch(import.meta.env.VITE_API_BASE_URL + '/clients').then((result) => console.log(result))
+
 export interface Client {
   id: string
   firstName: string | null
@@ -55,12 +57,12 @@ const columns = [
   }),
 ]
 
-const data = ref<Client[]>([])
+const clients = ref<Client[]>([])
 const sorting = ref<SortingState>([])
 
 const table = useVueTable({
   get data() {
-    return data.value
+    return clients.value
   },
   columns,
   state: {
