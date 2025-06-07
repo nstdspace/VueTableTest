@@ -1,2 +1,2 @@
 GET {{ baseUrl }}/clients
-Authorization: Bearer {{$auth.token("malinka")}}
+Authorization: Bearer {{$auth.token("frontend-client")}}

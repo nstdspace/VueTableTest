@@ -1,5 +1,5 @@
 POST {{ baseUrl }}/admin/seed
-Authorization: Bearer {{$auth.token("malinka")}}
+Authorization: Bearer {{$auth.token("frontend-client")}}
 Content-Type: application/octet-stream
 
 < /Users/mrotmann/Downloads/clients.xlsx
